@@ -1,0 +1,1340 @@
+{
+  "author": "",
+  "category": "Game mechanic",
+  "extensionNamespace": "",
+  "fullName": "Text Scroll",
+  "helpPath": "",
+  "iconUrl": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz48IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0ibWRpLXR5cGV3cml0ZXIiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0Ij48cGF0aCBkPSJNMjAgMTNIMTZDMTYgMTQuMSAxNS4xIDE1IDE0IDE1SDEwQzguOSAxNSA4IDE0LjEgOCAxM0g0TDIgMThWMjBDMiAyMS4xIDIuOSAyMiA0IDIySDIwQzIxLjEgMjIgMjIgMjEuMSAyMiAyMFYxOE02IDIwQzUuMTEgMjAgNC42NiAxOC45MiA1LjI5IDE4LjI5QzUuOTIgMTcuNjYgNyAxOC4xMSA3IDE5QzcgMTkuNTUgNi41NSAyMCA2IDIwTTEwIDIwQzkuMTEgMjAgOC42NiAxOC45MiA5LjI5IDE4LjI5QzkuOTIgMTcuNjYgMTEgMTguMTEgMTEgMTlDMTEgMTkuNTUgMTAuNTUgMjAgMTAgMjBNMTQgMjBDMTMuMTEgMjAgMTIuNjYgMTguOTIgMTMuMjkgMTguMjlDMTMuOTIgMTcuNjYgMTUgMTguMTEgMTUgMTlDMTUgMTkuNTUgMTQuNTUgMjAgMTQgMjBNMTggMjBDMTcuMTEgMjAgMTYuNjYgMTguOTIgMTcuMjkgMTguMjlDMTcuOTIgMTcuNjYgMTkgMTguMTEgMTkgMTlDMTkgMTkuNTUgMTguNTUgMjAgMTggMjBNMTggMTBWM0g2VjEwSDNWMTJIMjFWMTBNOCA1SDE2VjZIOE04IDdIMTRWOEg4IiAvPjwvc3ZnPg==",
+  "name": "TextScroll",
+  "previewIconUrl": "https://asset-resources.gdevelop.io/public-resources/Icons/b5de0bb070dfa89c6fd1f73993a0952315d148de5f4dbe4fa11a69743c6690eb_typewriter.svg",
+  "shortDescription": "Load a string or an array or structure of strings and start scrolling. Perfect for any kind of narrative scene.",
+  "version": "1.0.0",
+  "description": "Strings can be used for very short texts like instruction. Arrays are useful for interlude scenes, where the player just watch the dialogues. Instead, structures, can be used for interactive scenes.",
+  "tags": [
+    "text",
+    "scroll",
+    "narrate",
+    "dialogue"
+  ],
+  "authorIds": [
+    "ztysEVOhM3eeTF7DVGbIuwD6eK43"
+  ],
+  "dependencies": [],
+  "globalVariables": [],
+  "sceneVariables": [
+    {
+      "name": "Kind",
+      "type": "number",
+      "value": 0
+    },
+    {
+      "name": "Text",
+      "type": "string",
+      "value": ""
+    },
+    {
+      "name": "Array",
+      "type": "array",
+      "children": []
+    },
+    {
+      "name": "Structure",
+      "type": "structure",
+      "children": []
+    },
+    {
+      "name": "Scroll",
+      "type": "boolean",
+      "value": false
+    },
+    {
+      "name": "Time",
+      "type": "number",
+      "value": 0
+    },
+    {
+      "name": "Count",
+      "type": "number",
+      "value": 0
+    },
+    {
+      "name": "ArrayN",
+      "type": "number",
+      "value": 0
+    },
+    {
+      "name": "StructureT",
+      "type": "string",
+      "value": ""
+    },
+    {
+      "name": "Auto",
+      "type": "number",
+      "value": -1
+    }
+  ],
+  "eventsFunctions": [
+    {
+      "description": "Load one or more strings. If you choose: String: put a text; Array: put a JSON (use ToJSON) which returns an array variable; Structure: put a JSON (use ToJSON) which returns a structure variable.",
+      "fullName": "Load",
+      "functionType": "Action",
+      "name": "Load",
+      "sentence": "Load text _PARAM2_. Type: _PARAM1_",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "CompareArgumentAsString"
+              },
+              "parameters": [
+                "\"Type\"",
+                "=",
+                "\"String\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Kind",
+                "=",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetStringVariable"
+              },
+              "parameters": [
+                "Text",
+                "=",
+                "String"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "CompareArgumentAsString"
+              },
+              "parameters": [
+                "\"Type\"",
+                "=",
+                "\"Array\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Kind",
+                "=",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "JSONToVariableStructure2"
+              },
+              "parameters": [
+                "String",
+                "Array"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "CompareArgumentAsString"
+              },
+              "parameters": [
+                "\"Type\"",
+                "=",
+                "\"Structure\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Kind",
+                "=",
+                "2"
+              ]
+            },
+            {
+              "type": {
+                "value": "JSONToVariableStructure2"
+              },
+              "parameters": [
+                "String",
+                "Structure"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "CompareArgumentAsString"
+              },
+              "parameters": [
+                "\"Type\"",
+                "!=",
+                "\"Array\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "ArrayN",
+                "=",
+                "0"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "description": "Type",
+          "name": "Type",
+          "supplementaryInformation": "[\"String\",\"Array\",\"Structure\"]",
+          "type": "stringWithSelector"
+        },
+        {
+          "description": "String/array/structure",
+          "name": "String",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "If you chose the type: Structure, make sure that you set which string to start with. Use TextScroll::Text() to access the scrolled text.",
+      "fullName": "Start scrolling",
+      "functionType": "Action",
+      "name": "Scroll",
+      "sentence": "Scroll every _PARAM1_ seconds and instant scroll: _PARAM2_",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "Scroll",
+                "True",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Time",
+                "=",
+                "Timer"
+              ]
+            },
+            {
+              "type": {
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"__TextScroll\""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "GetArgumentAsBoolean"
+              },
+              "parameters": [
+                "\"InstantScroll\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Count",
+                "+",
+                "1"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "description": "Timer (in seconds)",
+          "name": "Timer",
+          "type": "expression"
+        },
+        {
+          "defaultValue": "yes",
+          "description": "Instantly scroll a first time",
+          "name": "InstantScroll",
+          "optional": true,
+          "type": "yesorno"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Scroll only one letter.",
+      "fullName": "Scroll once",
+      "functionType": "Action",
+      "name": "ScrollOnce",
+      "sentence": "Scroll once",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Count",
+                "+",
+                "1"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Return the current text.",
+      "fullName": "Current Text",
+      "functionType": "StringExpression",
+      "name": "Text",
+      "sentence": "",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "Kind",
+                "=",
+                "0"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetReturnString"
+              },
+              "parameters": [
+                "SubStr(Text, 0, Count)"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "Kind",
+                "=",
+                "1"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetReturnString"
+              },
+              "parameters": [
+                "SubStr(Array[ArrayN], 0, Count)"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "Kind",
+                "=",
+                "2"
+              ]
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [],
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::ForEachChildVariable",
+                  "iterableVariableName": "Structure",
+                  "valueIteratorVariableName": "Value",
+                  "keyIteratorVariableName": "Name",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "StringVariable"
+                      },
+                      "parameters": [
+                        "Name",
+                        "=",
+                        "StructureT"
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "SetReturnString"
+                      },
+                      "parameters": [
+                        "SubStr(Value, 0, Count)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "variables": [
+                {
+                  "name": "Name",
+                  "type": "string",
+                  "value": ""
+                },
+                {
+                  "name": "Value",
+                  "type": "string",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "expressionType": {
+        "type": "string"
+      },
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "the current array's number.",
+      "fullName": "Array number",
+      "functionType": "ExpressionAndCondition",
+      "group": "Array",
+      "name": "ArrayNumber",
+      "sentence": "The current array's number",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "SetReturnNumber"
+              },
+              "parameters": [
+                "ArrayN"
+              ]
+            }
+          ]
+        }
+      ],
+      "expressionType": {
+        "type": "expression"
+      },
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Choose which string of an array to show. The first is 0",
+      "fullName": "Choose array string",
+      "functionType": "ActionWithOperator",
+      "getterName": "ArrayNumber",
+      "name": "SetArray",
+      "sentence": "Set array's string number: _PARAM1_",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "ArrayN",
+                "=",
+                "Value"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Count",
+                "=",
+                "0"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "BooleanVariable"
+              },
+              "parameters": [
+                "Scroll",
+                "True",
+                ""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"__TextScroll\""
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "description": "",
+          "name": "Number",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Automatically select the following string, set to -1 to deactivate. Works only with the Array type.",
+      "fullName": "Auto Array",
+      "functionType": "Action",
+      "group": "Array",
+      "name": "AutoArray",
+      "sentence": "Set Autoscroll: _PARAM1_ seconds",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Auto",
+                "=",
+                "Value"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "description": "Time",
+          "name": "Value",
+          "type": "expression"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "the current structure's string.",
+      "fullName": "Structure string",
+      "functionType": "ExpressionAndCondition",
+      "group": "Structure",
+      "name": "StructureString",
+      "sentence": "The current structure's string",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "SetReturnString"
+              },
+              "parameters": [
+                "StructureT"
+              ]
+            }
+          ]
+        }
+      ],
+      "expressionType": {
+        "type": "string"
+      },
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Choose which string of a structure to show",
+      "fullName": "Choose structure string",
+      "functionType": "ActionWithOperator",
+      "getterName": "StructureString",
+      "name": "SetStructure",
+      "sentence": "Set structure's string name: _PARAM1_",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "SetStringVariable"
+              },
+              "parameters": [
+                "StructureT",
+                "=",
+                "Value"
+              ]
+            },
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Count",
+                "=",
+                "0"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "BooleanVariable"
+              },
+              "parameters": [
+                "Scroll",
+                "True",
+                ""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"__TextScroll\""
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "description": "",
+          "name": "Name",
+          "type": "string"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Stop scrolling and choose wether to reset by restarting the text.",
+      "fullName": "Stop scrolling",
+      "functionType": "Action",
+      "name": "StopScrolling",
+      "sentence": "Stop scrolling and reset: _PARAM1_",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "SetBooleanVariable"
+              },
+              "parameters": [
+                "Scroll",
+                "False",
+                ""
+              ]
+            },
+            {
+              "type": {
+                "value": "RemoveTimer"
+              },
+              "parameters": [
+                "",
+                "\"__TextScroll\""
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "GetArgumentAsBoolean"
+              },
+              "parameters": [
+                "\"Reset\""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Count",
+                "=",
+                "0"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [
+        {
+          "description": "Reset",
+          "name": "Reset",
+          "type": "yesorno"
+        }
+      ],
+      "objectGroups": []
+    },
+    {
+      "description": "Restart the current selected string.",
+      "fullName": "Restart",
+      "functionType": "Action",
+      "name": "Restart",
+      "sentence": "Restart the selected string",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Count",
+                "=",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "ResetTimer"
+              },
+              "parameters": [
+                "",
+                "\"__TextScroll\""
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "End the current string as if it had completed scrolling.",
+      "fullName": "End string",
+      "functionType": "Action",
+      "name": "End",
+      "sentence": "End the current string",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "Kind",
+                "=",
+                "0"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Count",
+                "=",
+                "StrLength(Text)"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "Kind",
+                "=",
+                "1"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetNumberVariable"
+              },
+              "parameters": [
+                "Count",
+                "=",
+                "StrLength(Array[ArrayN])"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "Kind",
+                "=",
+                "2"
+              ]
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [],
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::ForEachChildVariable",
+                  "iterableVariableName": "Structure",
+                  "valueIteratorVariableName": "Value",
+                  "keyIteratorVariableName": "Name",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "StringVariable"
+                      },
+                      "parameters": [
+                        "Name",
+                        "=",
+                        "StructureT"
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "SetNumberVariable"
+                      },
+                      "parameters": [
+                        "Count",
+                        "=",
+                        "StrLength(Value)"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "variables": [
+                {
+                  "name": "Name",
+                  "type": "string",
+                  "value": ""
+                },
+                {
+                  "name": "Value",
+                  "type": "string",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Check if the current string has finished scrolling.",
+      "fullName": "Scrolling completed",
+      "functionType": "Condition",
+      "name": "Finished",
+      "sentence": "The current string has finished scrolling",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "Kind",
+                "=",
+                "0"
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::CompareNumbers"
+              },
+              "parameters": [
+                "Count",
+                ">=",
+                "StrLength(Text)"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetReturnBoolean"
+              },
+              "parameters": [
+                "True"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "Kind",
+                "=",
+                "1"
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::CompareNumbers"
+              },
+              "parameters": [
+                "Count",
+                ">=",
+                "StrLength(Array[ArrayN])"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetReturnBoolean"
+              },
+              "parameters": [
+                "True"
+              ]
+            }
+          ]
+        },
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "Kind",
+                "=",
+                "2"
+              ]
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [],
+              "actions": [],
+              "events": [
+                {
+                  "type": "BuiltinCommonInstructions::ForEachChildVariable",
+                  "iterableVariableName": "Structure",
+                  "valueIteratorVariableName": "Value",
+                  "keyIteratorVariableName": "Name",
+                  "conditions": [
+                    {
+                      "type": {
+                        "value": "StringVariable"
+                      },
+                      "parameters": [
+                        "Name",
+                        "=",
+                        "StructureT"
+                      ]
+                    },
+                    {
+                      "type": {
+                        "value": "BuiltinCommonInstructions::CompareNumbers"
+                      },
+                      "parameters": [
+                        "Count",
+                        ">=",
+                        "StrLength(Value)"
+                      ]
+                    }
+                  ],
+                  "actions": [
+                    {
+                      "type": {
+                        "value": "SetReturnBoolean"
+                      },
+                      "parameters": [
+                        "True"
+                      ]
+                    }
+                  ]
+                }
+              ],
+              "variables": [
+                {
+                  "name": "Name",
+                  "type": "string",
+                  "value": ""
+                },
+                {
+                  "name": "Value",
+                  "type": "string",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Check if the last string of an array has completed scrolling.",
+      "fullName": "Strings finished",
+      "functionType": "Condition",
+      "group": "Array",
+      "name": "AutoFinished",
+      "sentence": "Autoscrolling has been completed",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "NumberVariable"
+              },
+              "parameters": [
+                "ArrayN",
+                "=",
+                "VariableChildCount(Array)-1"
+              ]
+            },
+            {
+              "type": {
+                "value": "BuiltinCommonInstructions::CompareNumbers"
+              },
+              "parameters": [
+                "Count",
+                ">=",
+                "StrLength(Array[ArrayN])"
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetReturnBoolean"
+              },
+              "parameters": [
+                "True"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "description": "Check if the text is scrolling.",
+      "fullName": "Is scrolling",
+      "functionType": "Condition",
+      "name": "IsScrolling",
+      "sentence": "The text is scrolling",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "BooleanVariable"
+              },
+              "parameters": [
+                "Scroll",
+                "True",
+                ""
+              ]
+            }
+          ],
+          "actions": [
+            {
+              "type": {
+                "value": "SetReturnBoolean"
+              },
+              "parameters": [
+                "True"
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    },
+    {
+      "fullName": "",
+      "functionType": "Action",
+      "name": "onScenePreEvents",
+      "sentence": "",
+      "events": [
+        {
+          "type": "BuiltinCommonInstructions::Standard",
+          "conditions": [
+            {
+              "type": {
+                "value": "BooleanVariable"
+              },
+              "parameters": [
+                "Scroll",
+                "True",
+                ""
+              ]
+            }
+          ],
+          "actions": [],
+          "events": [
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "CompareTimer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"__TextScroll\"",
+                    ">=",
+                    "Time"
+                  ]
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "Count",
+                    "+",
+                    "1"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ResetTimer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"__TextScroll\""
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "BuiltinCommonInstructions::Standard",
+              "conditions": [
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "Kind",
+                    "=",
+                    "1"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "Auto",
+                    "!=",
+                    "-1"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "NumberVariable"
+                  },
+                  "parameters": [
+                    "ArrayN",
+                    "<",
+                    "VariableChildCount(Array)-1"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::CompareNumbers"
+                  },
+                  "parameters": [
+                    "Count",
+                    ">=",
+                    "StrLength(Array[ArrayN])"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "BuiltinCommonInstructions::Once"
+                  },
+                  "parameters": []
+                }
+              ],
+              "actions": [
+                {
+                  "type": {
+                    "value": "Wait"
+                  },
+                  "parameters": [
+                    "Auto"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "ArrayN",
+                    "+",
+                    "1"
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "ResetTimer"
+                  },
+                  "parameters": [
+                    "",
+                    "\"__TextScroll\""
+                  ]
+                },
+                {
+                  "type": {
+                    "value": "SetNumberVariable"
+                  },
+                  "parameters": [
+                    "Count",
+                    "=",
+                    "0"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "parameters": [],
+      "objectGroups": []
+    }
+  ],
+  "eventsBasedBehaviors": [],
+  "eventsBasedObjects": []
+}
